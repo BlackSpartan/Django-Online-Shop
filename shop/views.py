@@ -4,10 +4,11 @@ from .models import Category, Product
 # Create your views here.
 # view to list products
 def product_list(request, category_slug=None):
-    Category = None
+    category = None
     categories =  Category.objects.all()
+    products = Product.objects.filter(available=True)
     if category_slug:
-        Category = get_object_or_404(Category, slug=category-slug)
+        category = get_object_or_404(Category, slug=category-slug)
         products = products.filter(category=category)
     return render(request, 'shop/product/list.html',{'category': category,'categories': categories, 'products': products} )
 
