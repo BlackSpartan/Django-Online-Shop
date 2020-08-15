@@ -17,7 +17,7 @@ class Category(models.Model):
         return reverse('shop:product_list_by_category', args=[self.slug])
 
 class Product(models.Model):
-    Category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE) # a foreign key to the category model
+    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE) # a foreign key to the category model
     name = models.CharField(max_length=200, db_index=True) # the name of the product
     slug = models.SlugField(max_length=200, db_index=True) # The slug for this product to build beautiful URLs.
     image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True) # An optional product image.
